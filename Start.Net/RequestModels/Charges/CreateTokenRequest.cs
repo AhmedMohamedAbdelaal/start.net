@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Start.Net.Entities;
 
 namespace Start.Net.RequestModels.Charges
 {
@@ -9,8 +10,20 @@ namespace Start.Net.RequestModels.Charges
             base.Uri = "/tokens/";
             base.HttpMethod = System.Net.WebRequestMethods.Http.Post;
         }
-        
-         
+        public CreateTokenRequest(Card card)
+        {
+            Number = card.Number;
+            Exp_Month = card.ExpireMonth;
+            Exp_Year = card.ExpireYear;
+            Cvc = card.Cvc.ToString();
+            Name = card.Name;
+
+
+            base.Uri = "/tokens/";
+            base.HttpMethod = System.Net.WebRequestMethods.Http.Post;
+        }
+
+
 
         [JsonProperty("number")]
         public string Number { get; set; }

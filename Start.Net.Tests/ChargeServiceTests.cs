@@ -19,12 +19,17 @@ namespace Start.Net.Tests
         private IStartCustomerService _customerService;
         private IStartTokenService _tokenService;
         private Card _workingCard;
+        private string _iPAddress;
 
-        public ChargeServiceTests(string _iPAddress)
+        public ChargeServiceTests()
         {
             _service = new StartChargeService("test_sec_k_8512e94e69d6a46c67ab2");
             _customerService = new StartCustomerService("test_sec_k_8512e94e69d6a46c67ab2");
-            _tokenService = new StartTokenService("test_open_k_3gfew76877gy689798hc86a4");
+            _tokenService = new StartTokenService("test_open_k_956a1de10dba98935041");
+
+
+
+            _iPAddress = "127.0.0.1";
             _workingCard = new Card()
             {
                 Name = "Abdullah Ahmed",
@@ -34,14 +39,8 @@ namespace Start.Net.Tests
                 Number = "4242424242424242"
             };
 
-            _createTokenRequest = new CreateTokenRequest()
-            {
-                Number = "4242424242424242",
-                Exp_Month = 12,
-                Exp_Year = 2020,
-                Cvc = "123",
-                Name = "Abdullah Ahmed"
-            };
+            _createTokenRequest = new CreateTokenRequest(_workingCard);
+
             _createChargeRequest = new CreateChargeRequest()
             {
                 Amount = 10000,
@@ -68,8 +67,6 @@ namespace Start.Net.Tests
         [TestMethod]
         public void CreateCharge_UsingCardDetails_Success()
         {
-            _createChargeRequest.CardDetails = _workingCard;
-
             ApiResponse<Token> responseToken = _tokenService.CreateToken(_createTokenRequest);
             _createChargeRequest.CardToken = responseToken.Content.Id;
             ApiResponse<Charge> response = _service.CreateCharge(_createChargeRequest);

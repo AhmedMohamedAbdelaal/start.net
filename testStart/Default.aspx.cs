@@ -16,8 +16,8 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnTest_Click(object sender, EventArgs e)
     {
-        string IPAddress = GetIPAddress();
-        ChargeServiceTests obj = new ChargeServiceTests(IPAddress);        
+        //string IPAddress = GetIPAddress();
+        ChargeServiceTests obj = new ChargeServiceTests();        
         obj.CreateCharge_UsingCardDetails_Success();
     }
 

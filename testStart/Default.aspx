@@ -10,21 +10,21 @@
 <script>
     $(function () {
 
-        //// Initialize Start on page load
-        //StartCheckout.config({
-        //    key: "test_open_k_3a4fb497cc9d0c8c86a4",
-        //    complete: function (params) {
-        //        alert(params.token.id);
-        //        $("#hdToken").val(params.token.id);
+        // Initialize Start on page load
+        StartCheckout.config({
+            key: "test_open_k_956a1de10dba98935041",
+            complete: function (params) {
+                alert(params.token.id);
+                $("#hdToken").val(params.token.id);
 
-        //    }
-        //});
+            }
+        });
 
-        //StartCheckout.open({
-        //    amount: 10000,  // = AED 100.00
-        //    currency: "AED",
-        //    email: "john.doe@gmail.com"
-        //});
+        StartCheckout.open({
+            amount: 10000,  // = AED 100.00
+            currency: "AED",
+            email: "john.doe@gmail.com"
+        });
     });
 </script>
 </head>
